@@ -1,0 +1,34 @@
+@media screen and (min-width: 750px) {
+    .site-inner {
+        max-width: 750px;
+        background-color: white;
+        margin: auto;
+        border: solid 3px lightblue;
+        border-radius: 15px;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        padding-left: 5px;
+    }
+
+    html {
+        background-image: url("../images/site/small_check.jpg");
+        background-repeat: repeat;
+    }
+
+    #site-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        column-gap: 20px;
+    }
+
+    #reviews {
+        grid-column: 2/3;
+        grid-row: 1;
+    }
+
+    #upgrades-grid {
+        grid-column: 1;
+        grid-row: 1;
+    }
+}

@@ -4,3 +4,160 @@
 *:after {
   box-sizing: border-box;
 }
+
+/************* General CSS *************/
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0px;
+}
+
+/************ Header CSS ***************/
+header {
+  display: flex;
+  max-width: 1600px;
+  padding: 5px;
+}
+
+header a{
+  color: black;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+header .siteName a{
+  font-size: 35px;
+  font-weight: 800;
+  align-content: center;
+}
+
+header #tools {
+  margin-left: auto;
+  margin-right: 10px;
+}
+
+/***************** Nav CSS ****************/
+nav {
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  padding: 3px;
+}
+
+nav ul {
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  padding-left: 0px;
+}
+
+nav li:hover {
+  text-decoration: underline;
+}
+
+/*************** Hero Box CSS *************/
+#hero-box {
+  display: grid;
+  grid-template-columns: 275px 1fr;
+  grid-template-rows: 207px 1fr;
+}
+
+#sub-hero {
+  grid-column: 1;
+  grid-row: 1;
+  color: navy;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+#sub-hero li {
+  list-style-type: none;
+  text-indent: 0px;
+  grid-column: 1;
+  grid-column: 1;
+  padding: 3px;
+}
+
+#sub-hero ul {
+  padding: 0;
+  margin-left: 5px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;  font-size: 25px;
+}
+
+#sub-hero h2 {
+  margin-left: 5px;
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  padding: 0;
+}
+
+#hero-img {
+  grid-column: 1/3;
+  grid-row: 1/3;
+  width: 100%;
+}
+
+#sub-hero > * {
+  padding: 3px;
+}
+
+.own-today-btn {
+  margin-top: 10px;
+  max-width: 200px;
+}
+
+.own-today-btn img {
+  width: 100%;
+}
+
+.own-today-btn:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+/************* Reviews CSS ***********/
+#reviews li{
+  font-size: 20px;
+  padding: 8px;
+}
+
+/************* Upgrades CSS **********/
+#upgrades-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-content: center;
+  column-gap: 7px;
+}
+
+#upgrades-grid figure{
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  padding-left: 2px;
+  margin: 2px;
+}
+
+.upgrade {
+  width: 175px;
+  height: 90px;
+  background-color: lightblue;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  border: solid 2px black;
+}
+
+#upgrades-grid figure img{
+  background-color: lightblue;
+}
+
+#upgrades-grid figcaption {
+  color: darkblue;
+  text-align: center;
+}
+
+/************* Footer CSS ************/
+footer {
+  padding: 15px;
+}
