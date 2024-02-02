@@ -187,6 +187,23 @@ nav li a:hover {
   color: navy;
 }
 
+/*********** Register Form CSS *******/
+#register-form {
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  align-items: start;
+  padding: 15px;
+  font-size: larger;
+}
+
+#register-form button {
+  color: white;
+  background-color: navy;
+  width: 105px;
+  border-radius: 15px;
+}
+
 /************* Footer CSS ************/
 footer {
   padding: 15px;

@@ -1,0 +1,20 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<div id="form-container">
+  <form id="register-form">
+    <label for="fname">First name:</label><br>
+    <input type="text" id="fname" name="fname" required><br>
+    <label for="lname">Last name:</label><br>
+    <input type="text" id="lname" name="lname" required><br>
+    <label for="username">Email address:</label><br>
+    <input type="email" id="username" name="username" required><br>
+    <label for="password">Password:</label><br>
+    <input type="text" id="password" name="password" required><br>
+    <p>Note: password must be at least 12 characters in length and must contain at least 1 capital letter, 1 number, and 1 special character.</p>
+    <button type="submit">REGISTER</button>
+  </form>
+</div>
