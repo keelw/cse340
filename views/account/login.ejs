@@ -11,7 +11,8 @@
     <label for="username">Email:</label><br>
     <input type="email" id="account_email" name="account_email" required><br>
     <label for="password">Password:</label><br>
-    <input type="password" id="account_password" name="account_password" required><br>
+    <input type="password" id="account_password" name="account_password" required
+    pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br>
     <button type="submit">LOGIN</button>
   </form>
   <p>No account? <a id="sign-up" href="/account/register">Sign-up</a></p>
