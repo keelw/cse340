@@ -38,7 +38,6 @@ header #tools {
 /***************** Nav CSS ****************/
 nav {
   background-color: black;
-  color: white;
   font-size: 16px;
   padding: 3px;
 }
@@ -50,7 +49,12 @@ nav ul {
   padding-left: 0px;
 }
 
-nav li:hover {
+nav li a{
+  color: white;
+  text-decoration: none;
+}
+
+nav li a:hover {
   text-decoration: underline;
 }
 
@@ -155,6 +159,32 @@ nav li:hover {
 #upgrades-grid figcaption {
   color: darkblue;
   text-align: center;
+}
+
+/********* Login Form CSS ************/
+#form-container {
+  text-align: center;
+}
+
+#login-form {
+  display: flex;
+  flex-direction: column;
+  background-color: navy;
+  color: white;
+  max-width: 500px;
+  border-radius: 15px;
+  align-items: center;
+  justify-items: center;
+  padding: 20px;
+  margin: auto;
+}
+
+#login-form > * {
+  max-width: 80%;
+}
+
+#login-form button {
+  color: navy;
 }
 
 /************* Footer CSS ************/
