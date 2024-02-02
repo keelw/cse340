@@ -4,12 +4,14 @@
       res.redirect('/')
     } %>
 
+<%- messages() %>
+
 <div id="form-container">
   <form id="login-form">
-    <label for="username">Username:</label><br>
-    <input type="email" id="username" name="username" required><br>
+    <label for="username">Email:</label><br>
+    <input type="email" id="account_email" name="account_email" required><br>
     <label for="password">Password:</label><br>
-    <input type="text" id="password" name="password" required><br>
+    <input type="password" id="account_password" name="account_password" required><br>
     <button type="submit">LOGIN</button>
   </form>
   <p>No account? <a id="sign-up" href="/account/register">Sign-up</a></p>

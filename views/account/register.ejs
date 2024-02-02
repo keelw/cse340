@@ -4,16 +4,19 @@
       res.redirect('/')
     } %>
 
+<%- messages() %>
+
 <div id="form-container">
-  <form id="register-form">
+  <form action="/account/register" method="post" id="register-form">
+    <p>All fields are required.</p>
     <label for="fname">First name:</label><br>
-    <input type="text" id="fname" name="fname" required><br>
+    <input type="text" id="account_firstname" name="account_firstname" required><br>
     <label for="lname">Last name:</label><br>
-    <input type="text" id="lname" name="lname" required><br>
+    <input type="text" id="account_lastname" name="account_lastname" required><br>
     <label for="username">Email address:</label><br>
-    <input type="email" id="username" name="username" required><br>
+    <input type="email" id="account_email" name="account_email" required><br>
     <label for="password">Password:</label><br>
-    <input type="text" id="password" name="password" required><br>
+    <input type="password" id="account_password" name="account_password" required><br>
     <p>Note: password must be at least 12 characters in length and must contain at least 1 capital letter, 1 number, and 1 special character.</p>
     <button type="submit">REGISTER</button>
   </form>
