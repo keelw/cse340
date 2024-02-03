@@ -202,6 +202,7 @@ nav li a:hover {
   background-color: navy;
   width: 105px;
   border-radius: 15px;
+  padding: 10px;
 }
 
 /************* Footer CSS ************/

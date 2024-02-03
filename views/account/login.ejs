@@ -7,9 +7,9 @@
 <%- messages() %>
 
 <div id="form-container">
-  <form id="login-form">
+  <form id="login-form" action="/account/login" method="post">
     <label for="username">Email:</label><br>
-    <input type="email" id="account_email" name="account_email" required><br>
+    <input type="email" id="account_email" name="account_email" required value="<%= locals.account_email %>"><br>
     <label for="password">Password:</label><br>
     <input type="password" id="account_password" name="account_password" required
     pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$"><br>
