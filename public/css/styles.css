@@ -205,6 +205,14 @@ nav li a:hover {
   padding: 10px;
 }
 
+/*********** Vehicle Pages ***********/
+#vehicle-display {
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  font-size: larger;
+}
+
 /************* Footer CSS ************/
 footer {
   padding: 15px;
