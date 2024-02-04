@@ -41,7 +41,7 @@ validate.inventoryRules = () => {
             .trim()
             .isLength({min: 1})
             .isInt({ min: 1900, max: 2050})
-            .withMessage("Please provide a valid string for vehicle model."),
+            .withMessage("Please provide a year for this vehicle (must be after 1900)."),
 
         body("inv_description")
             .trim(),
