@@ -213,6 +213,45 @@ nav li a:hover {
   font-size: larger;
 }
 
+/************ Mgr Panel **************/
+#mgr-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#mgr-buttons a {
+  color: white;
+  background-color: navy;
+  padding: 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  max-width: 300px;
+  margin: 10px;
+}
+
+#mgr-buttons a:hover {
+  text-decoration: underline;
+}
+
+/****** New Classification Form ******/
+#add-classification-form {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  width: 250px;
+}
+
+#add-classification button {
+  padding: 5px;
+  color: white;
+  background-color: navy;
+}
+
+.note {
+  color: darkred;
+}
+
 /************* Footer CSS ************/
 footer {
   padding: 15px;

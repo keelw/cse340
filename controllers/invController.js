@@ -37,4 +37,60 @@ invCont.buildByInventoryId = async function (req, res, next) {
   })
 }
 
+/* **************************************
+* Build manager view
+* ************************************ */
+invCont.buildManagementView = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Management Control Panel",
+    nav,
+    errors: null,
+  })
+}
+
+/* **************************************
+* Build add classification view
+* ************************************ */
+invCont.buildAddClassificationView = async function (req, res, next) {
+  const nav = await utilities.getNav()
+  res.render("inventory/add-classification", {
+    title: "New Classification",
+    nav,
+    errors: null,
+  })
+}
+
+/* **************************************
+* Add a new classification and handle errors
+* ************************************ */
+invCont.addClassification = async function (req, res) {
+  const { classification_name } = req.body
+  let nav = await utilities.getNav()
+  const regResult = await invModel.addClassificationInfo(
+    classification_name
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, you\'ve added ${classification_name} to the site.`
+    )
+    let nav = await utilities.getNav()
+    res.status(201).render("inventory/management", {
+      title: "Management Control Panel",
+      nav,
+      errors: null,
+    })
+    } else {
+    req.flash("notice", "Sorry, adding the classification failed.")
+    res.status(501).render("inventory/add-classification", {
+      title: "Management Control Panel",
+      nav,
+      errors: null,
+    })
+  }
+}
+
+
 module.exports = invCont
