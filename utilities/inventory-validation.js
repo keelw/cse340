@@ -21,12 +21,10 @@ validate.classificationRules = () => {
 }
 
 /*  **********************************
- *  Classification Data Validation Rules
+ *  Inventory Data Validation Rules
  * ********************************* */
 validate.inventoryRules = () => {
     return [
-        // classification is required and must be a string and cannot 
-        // special characters or spaces
         body("inv_make")
             .trim()
             .isLength({min: 1})
@@ -72,13 +70,13 @@ validate.inventoryRules = () => {
 /* ******************************
  * Check data and return errors or continue to add classification
  * ***************************** */
-validate.checkRegData = async (req, res, next) => {
+validate.checkRegDataClassification = async (req, res, next) => {
     const { classification_name } = req.body
     let errors = []
     errors = validationResult(req)
     if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      res.render("inv/management", {
+      res.render("inventory/add-classification", {
         errors,
         title: "Adding Classification",
         nav,
@@ -88,5 +86,42 @@ validate.checkRegData = async (req, res, next) => {
     }
     next()
   }
+
+  /* ******************************
+ * Check data and return errors or continue to add classification
+ * ***************************** */
+validate.checkRegDataInventory = async (req, res, next) => {
+    const { inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      let classificationSelector = await utilities.getClassificationSelector()
+      res.render("inventory/add-inventory", {
+        errors,
+        title: "Adding Inventory",
+        nav,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id,
+        classificationSelector
+    })
+      return
+    }
+    next()
+  }
+
   
   module.exports = validate

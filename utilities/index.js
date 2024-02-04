@@ -87,9 +87,10 @@ Util.buildVehicleDisplay = async function(data) {
  ************************** */
 Util.getClassificationSelector = async function (req, res, next) {
   let data = await invModel.getClassifications()
-  let options = `<select id="classificationId" name="classification_id" required value="<%= locals.classification_name %>">`
+  let options = `<select id="classificationId" name="classification_id">`
+  options += `<option value="" disabled selected hidden>Select One</option>`
   data.rows.forEach((row) => {
-    options += `<option value="` + row.classification_name
+    options += `<option value="` + row.classification_id
     options += `">` + row.classification_name + `</option>`
   })
   options += "</select><br>"

@@ -21,12 +21,19 @@ router.get("/add-classification", invController.buildAddClassificationView)
 router.post(
     "/add-classification",
     regValidate.classificationRules(),
-    regValidate.checkRegData,
+    regValidate.checkRegDataClassification,
     utilities.handleErrors(invController.addClassification)
   )
 
 // Route to build the new inventory view
+router.get("/add-inventory", invController.buildAddInventoryView)
 
 // Route to add new inventory from form and validate
+router.post(
+    "/add-inventory",
+    regValidate.inventoryRules(),
+    regValidate.checkRegDataInventory,
+    utilities.handleErrors(invController.addInventory)
+)
 
 module.exports = router;
