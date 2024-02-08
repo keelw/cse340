@@ -15,7 +15,7 @@
 <% } %>
 
 <div id="add-inventory">
-  <form action="/inv/add-inventory" method="post" id="add-inventory-form">
+  <form action="/inv/modify-inventory" method="post" id="add-inventory-form">
     <p class="note">Note: All fields are required.</p>
     <label for="classificationId">Select the vehicle classification:</label><br>
       <%- classificationSelector %>
@@ -26,13 +26,13 @@
     <label for="invYear">Enter the vehicle year:</label><br>
     <input type="number" id="invYear" name="inv_year" required value="<%= locals.inv_year %>" placeholder="2017" min="1900" max="2050"><br>
     <label for="invDescription">Give a description of the vehicle:</label><br>
-    <textarea id="invDescription" name="inv_description" rows="5" cols="45"></textarea><br>
+    <textarea id="invDescription" name="inv_description" rows="5" cols="45" required><%= locals.inv_description %></textarea><br>
     <label for="invPrice">Enter the vehicle price:</label><br>
     <input type="number" name="inv_price" id="invPrice" placeholder="$25,000.00" required value="<%= locals.inv_price %>"><br>    
     <label for="invMiles">Enter the vehicle miles:</label><br>
     <input type="number" id="invMiles" name="inv_miles" required value="<%= locals.inv_miles %>" placeholder="63,000" min="0" max="10000000"><br>
     <label for="invColor">Enter the vehicle color:</label><br>
     <input type="text" id="invColor" name="inv_color" required value="<%= locals.inv_color %>" placeholder="Red"><br>
-    <button type="submit" id="add-inventory-btn">Add to Inventory</button>
+    <button type="submit" id="add-inventory-btn">Modify Inventory</button>
   </form>
 </div>

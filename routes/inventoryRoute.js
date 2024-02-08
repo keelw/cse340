@@ -39,4 +39,7 @@ router.post(
 // Route to get the URL for the manager view
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+// Route to modify the inventory from management control panel
+router.get("/edit/:inv_id", utilities.handleErrors(invController.modifyInventory))
+
 module.exports = router;

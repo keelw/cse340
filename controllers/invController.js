@@ -167,5 +167,35 @@ invCont.getInventoryJSON = async (req, res, next) => {
   }
 }
 
+/* ***************************
+ *  Modify Inventory
+ * ************************** */
+invCont.modifyInventory = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id)
+  const nav = await utilities.getNav()
+  const invData = await invModel.getInventoryByInventoryId(inv_id)
+  const classificationSelector = await utilities.getClassificationSelector(invData.classification_id)
+  const itemName = `${invData[0].inv_make} ${invData[0].inv_model}`
+  console.log(invData[0])
+  res.render("inventory/modify-inventory", {
+    title: "Modify " + itemName,
+    nav,
+    inv_id: invData[0].inv_id,
+    inv_make: invData[0].inv_make,
+    inv_model: invData[0].inv_model,
+    inv_year: invData[0].inv_year,
+    inv_description: invData[0].inv_description,
+    inv_image: invData[0].inv_image,
+    inv_thumbnail: invData[0].inv_thumbnail,
+    inv_price: invData[0].inv_price,
+    inv_miles: invData[0].inv_miles,
+    inv_color: invData[0].inv_color,
+    classification_id: invData[0].classification_id,
+    classificationSelector,
+    errors: null,
+  })
+}
+
+
 
 module.exports = invCont
