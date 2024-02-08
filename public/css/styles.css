@@ -234,6 +234,26 @@ nav li a:hover {
   text-decoration: underline;
 }
 
+/* Basic styling for the table */
+#inventoryDisplay {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#inventoryDisplay td, #inventoryDisplay th {
+  border: 1px solid #dddddd;
+  padding: 8px;
+}
+
+#inventoryDisplay tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+#inventoryDisplay th {
+  background-color: navy;
+  color: white;
+}
+
 /****** New Classification Form ******/
 #add-classification-form {
   display: flex;

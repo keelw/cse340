@@ -12,7 +12,7 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/details/:invId", invController.buildByInventoryId);
 
 // Route to build the manager view
-router.get("/management/", invController.buildManagementView);
+router.get("/", invController.buildManagementView);
 
 // Route to build the new classification view
 router.get("/add-classification", invController.buildAddClassificationView)
@@ -35,5 +35,8 @@ router.post(
     regValidate.checkRegDataInventory,
     utilities.handleErrors(invController.addInventory)
 )
+
+// Route to get the URL for the manager view
+router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 module.exports = router;
