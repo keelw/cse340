@@ -139,7 +139,7 @@ invCont.addInventory = async function (req, res) {
       `Congratulations, you\'ve added ${inv_year + " " + inv_model} to the site.`
     )
     let nav = await utilities.getNav()
-    res.status(201).render("inventory/management", {
+    res.status(201).render("/inv/", {
       title: "Management Control Panel",
       nav,
       errors: null,
@@ -168,7 +168,7 @@ invCont.getInventoryJSON = async (req, res, next) => {
 }
 
 /* ***************************
- *  Modify Inventory
+ *  Build the modify inventory view
  * ************************** */
 invCont.modifyInventory = async function (req, res, next) {
   const inv_id = parseInt(req.params.inv_id)
@@ -196,6 +196,66 @@ invCont.modifyInventory = async function (req, res, next) {
   })
 }
 
+/* **************************************
+* Update Inventory Item and Handle errors
+* ************************************ */
+invCont.updateInventory = async function (req, res) {
+  const { inv_id,
+    inv_make,
+    inv_model,
+    inv_year,
+    inv_description,
+    inv_image,
+    inv_thumbnail,
+    inv_price,
+    inv_miles,
+    inv_color,
+    classification_id } = req.body
+  let nav = await utilities.getNav()
+  const updateResult = await invModel.updateInventory(
+          inv_id,
+          inv_make,
+          inv_model,
+          inv_year,
+          inv_description,
+          inv_image,
+          inv_thumbnail,
+          inv_price,
+          inv_miles,
+          inv_color,
+          classification_id
+  )
+
+  const invData = await invModel.getInventoryByInventoryId(inv_id)
+  const itemName = `${invData[0].inv_make} ${invData[0].inv_model}`
+  if (updateResult) {
+    req.flash("notice", `The ${itemName} was successfully updated.`)
+    res.redirect("/inv/")
+    } else {
+    const invData = await invModel.getInventoryByInventoryId(inv_id)
+    const itemName = `${invData[0].inv_make} ${invData[0].inv_model}`
+    const classificationSelect = await utilities.buildClassificationList(classification_id)
+    console.log("failureeee")
+    req.flash("notice", "Sorry, the insert failed.")
+    res.status(501).render("inventory/modify-inventory", {
+      title: "Modify " + itemName,
+      nav,
+      classificationSelect: classificationSelect,
+      errors: null,
+      inv_id,
+      inv_make,
+      inv_model,
+      inv_year,
+      inv_description,
+      inv_image,
+      inv_thumbnail,
+      inv_price,
+      inv_miles,
+      inv_color,
+      classification_id
+      })
+    }
+}
 
 
 module.exports = invCont

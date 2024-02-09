@@ -273,7 +273,7 @@ nav li a:hover {
 }
 
 /****** New Inventory Form ******/
-#add-inventory-form {
+#add-inventory-form, #update-form {
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -282,7 +282,7 @@ nav li a:hover {
   font-size: larger;
 }
 
-#add-inventory-form button {
+#add-inventory-form button, #update-form button{
   color: white;
   background-color: navy;
 }

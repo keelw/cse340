@@ -15,7 +15,7 @@
 <% } %>
 
 <div id="add-inventory">
-  <form action="/inv/modify-inventory" method="post" id="add-inventory-form">
+  <form action="/inv/modify-inventory" method="post" id="update-form">
     <p class="note">Note: All fields are required.</p>
     <label for="classificationId">Select the vehicle classification:</label><br>
       <%- classificationSelector %>
@@ -33,6 +33,16 @@
     <input type="number" id="invMiles" name="inv_miles" required value="<%= locals.inv_miles %>" placeholder="63,000" min="0" max="10000000"><br>
     <label for="invColor">Enter the vehicle color:</label><br>
     <input type="text" id="invColor" name="inv_color" required value="<%= locals.inv_color %>" placeholder="Red"><br>
-    <button type="submit" id="add-inventory-btn">Modify Inventory</button>
+    <button type="submit" id="add-inventory-btn" disabled>Modify Inventory</button>
+    <input type="hidden" name="inv_id"
+      <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+      <% } %>>
+    <input type="hidden" name="inv_image"
+      <% if(locals.inv_image) { %> value="<%= locals.inv_image %>"
+      <% } %>>
+    <input type="hidden" name="inv_thumbnail"
+      <% if(locals.inv_thumbnail) { %> value="<%= locals.inv_thumbnail %>"
+      <% } %>>
   </form>
+  <script src="/js/inv-update.js"></script>
 </div>

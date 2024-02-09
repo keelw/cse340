@@ -15,7 +15,6 @@ validate.classificationRules = () => {
             .trim()
             .isLength({min: 1})
             .isAlphanumeric()
-            .custom(value => !/\s/.test(value))
             .withMessage("Please provide a valid classification name.")
     ]
 }
@@ -28,13 +27,11 @@ validate.inventoryRules = () => {
         body("inv_make")
             .trim()
             .isLength({min: 1})
-            .isAlphanumeric()
             .withMessage("Please provide a valid string for vehicle make."),
 
         body("inv_model")
             .trim()
             .isLength({min: 1})
-            .isAlphanumeric()
             .withMessage("Please provide a valid string for vehicle model."),
 
         body("inv_year")
@@ -61,9 +58,7 @@ validate.inventoryRules = () => {
         body("inv_color")
             .trim()
             .isLength({min: 1})
-            .isAlphanumeric()
             .withMessage("Please provide a valid string for vehicle color."),
-
     ]
 }
 
@@ -117,6 +112,50 @@ validate.checkRegDataInventory = async (req, res, next) => {
         inv_color,
         classification_id,
         classificationSelector
+    })
+      return
+    }
+    next()
+  }
+
+/* ******************************
+ * Check data and return errors or continue to modify inventory
+   Errors will be redirected back to the edit view
+ * ***************************** */
+validate.checkUpdateData = async (req, res, next) => {
+    const { 
+        inv_id,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id
+         } = req.body
+    let errors = []
+    errors = validationResult(req)
+    if (!errors.isEmpty()) {
+      let nav = await utilities.getNav()
+      let classificationSelector = await utilities.getClassificationSelector()
+      const invData = await invModel.getInventoryByInventoryId(inv_id)
+      const itemName = `${invData[0].inv_make} ${invData[0].inv_model}`
+      
+      res.render(`/inv/edit/${invData[0].inv_id}`, {
+        errors,
+        title: "Modify " + itemName,
+        nav,
+        inv_make,
+        inv_model,
+        inv_year,
+        inv_description,
+        inv_price,
+        inv_miles,
+        inv_color,
+        classification_id,
+        classificationSelector,
+        inv_id
     })
       return
     }
