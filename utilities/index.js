@@ -90,11 +90,16 @@ Util.buildVehicleDisplay = async function(data) {
  ************************** */
 Util.getClassificationSelector = async function (req, res, next) {
   let data = await invModel.getClassifications()
+  // let inv_id = req.params.invId
+  // let class_id = 0;
   let options = `<select id="classificationId" name="classification_id">`
   options += `<option value="" disabled selected hidden>Select One</option>`
   data.rows.forEach((row) => {
-    options += `<option value="` + row.classification_id
-    options += `">` + row.classification_name + `</option>`
+    options += `<option value="` + row.classification_id + `"`
+    // if (req.params.classification_id == row.classification_id) {
+    //   options += "selected";
+    // }
+    options += `>` + row.classification_name + `</option>`
   })
   options += "</select><br>"
   return options

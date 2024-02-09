@@ -235,7 +235,6 @@ invCont.updateInventory = async function (req, res) {
     const invData = await invModel.getInventoryByInventoryId(inv_id)
     const itemName = `${invData[0].inv_make} ${invData[0].inv_model}`
     const classificationSelect = await utilities.buildClassificationList(classification_id)
-    console.log("failureeee")
     req.flash("notice", "Sorry, the insert failed.")
     res.status(501).render("inventory/modify-inventory", {
       title: "Modify " + itemName,
@@ -253,6 +252,53 @@ invCont.updateInventory = async function (req, res) {
       inv_miles,
       inv_color,
       classification_id
+      })
+    }
+}
+
+/* ***************************
+ *  Build the delete inventory view
+ * ************************** */
+invCont.deleteInventoryView = async function (req, res, next) {
+  const inv_id = parseInt(req.params.inv_id)
+  const nav = await utilities.getNav()
+  const invData = await invModel.getInventoryByInventoryId(inv_id)
+  const itemName = `${invData[0].inv_make} ${invData[0].inv_model}`
+  console.log(invData[0])
+  res.render("inventory/delete-inventory", {
+    title: "Delete " + itemName,
+    nav,
+    inv_id: invData[0].inv_id,
+    inv_make: invData[0].inv_make,
+    inv_model: invData[0].inv_model,
+    inv_year: invData[0].inv_year,
+    inv_price: invData[0].inv_price,
+    inv_miles: invData[0].inv_miles,
+    errors: null,
+  })
+}
+
+/* **************************************
+* Delete Inventory Item and Handle errors
+* ************************************ */
+invCont.deleteInventory = async function (req, res) {
+    const inv_id = parseInt(req.body.inv_id)
+    console.log(inv_id)
+    let nav = await utilities.getNav()
+    const invData = await invModel.getInventoryByInventoryId(inv_id)
+    const itemName = `${invData[0].inv_make} ${invData[0].inv_model}`
+
+    const deleteItem = await invModel.deleteItem(inv_id)
+
+    if (deleteItem) {
+      req.flash("notice", `The ${itemName} was successfully deleted.`)
+      res.redirect("/inv/")
+      } else {
+      req.flash("notice", "Sorry, the DELETE failed.")
+      res.status(501).render("/inv/", {
+      title: "Modify " + itemName,
+      nav,
+      errors: null,
       })
     }
 }
