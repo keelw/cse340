@@ -14,10 +14,10 @@
  </ul>
 <% } %>
 
-<div id="form-container">
-  <form action="/account/register" method="post" id="register-form">
+<div class="form-container">
+  <form action="/account/register" method="post" class="register-form">
     <p>All fields are required.</p>
-    <label for="fname">First name:</label><br>
+    <label for="account_firstname">First name:</label><br>
     <input type="text" id="account_firstname" name="account_firstname" required value="<%= locals.account_firstname %>"><br>
     <label for="lname">Last name:</label><br>
     <input type="text" id="account_lastname" name="account_lastname" required value="<%= locals.account_lastname %>"><br>

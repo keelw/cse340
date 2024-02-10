@@ -162,7 +162,7 @@ nav li a:hover {
 }
 
 /********* Login Form CSS ************/
-#form-container {
+.form-container {
   text-align: center;
 }
 
@@ -188,7 +188,7 @@ nav li a:hover {
 }
 
 /*********** Register Form CSS *******/
-#register-form {
+.register-form {
   display: flex;
   flex-direction: column;
   width: 250px;
@@ -197,7 +197,7 @@ nav li a:hover {
   font-size: larger;
 }
 
-#register-form button {
+.register-form button {
   color: white;
   background-color: navy;
   width: 105px;
