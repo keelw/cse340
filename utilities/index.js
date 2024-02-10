@@ -159,7 +159,7 @@ Util.checkType = (req, res, next) => {
       const payload = decodedToken;
 
       // First set the local variables while we are here...
-      if (payload.accout_type == "Client") {
+      if (payload.account_type == "Client") {
         res.locals.account_type = "Client";
       } else if (payload.account_type == "Employee") {
         res.locals.account_type = "Employee"
@@ -170,12 +170,11 @@ Util.checkType = (req, res, next) => {
       // Set the local variables for first name too...
       res.locals.account_firstname = payload.account_firstname
 
-      if (payload.account_type == "Client") {
-          req.flash("notice", "Forbidden from page.");
-          return res.render("/account/accountManager");
-      } else {
+        console.log(payload.account_type)
+        console.log(res.locals.account_type)
+        console.log(payload.account_type == res.locals.account_type)
         next()
-      }
+      
   } else {
       req.flash("notice", "You need to log in first.");
       return res.redirect("/account/login");

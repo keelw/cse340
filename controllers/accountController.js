@@ -37,7 +37,6 @@ async function buildRegister(req, res, next) {
 * *************************************** */
 async function buildAccountManager(req, res, next) {
   let nav = await utilities.getNav()
-  const first_name = "hallow"
   res.render("account/accountManager", {
     title: "Account Manager",
     nav,

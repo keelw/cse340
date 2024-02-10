@@ -7,5 +7,11 @@
 <%- messages() %>
 
 <div id="account-manager">
-  <p>Hi</p>
+  <h2>Welcome <%= locals.account_firstname %></h2>
+  <% if (locals.account_type != "Client") { %>
+    <h3>Inventory Management</h3>
+    <p><a title="Inventory Management" href="/inv/">Go to inventory management</a></p>
+  <% } %>
+  <h3>Update Account Information</h3>
+  <p><a title="Update Account Information" href="/update">Update account information</a></p>
 </div>
