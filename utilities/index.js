@@ -167,13 +167,15 @@ Util.checkType = (req, res, next) => {
         res.locals.account_type = "Admin"
       }
 
+      // Set the account ID as well...
+      res.locals.account_id = payload.account_id
+      res.locals.account_lastname = payload.account_lastname
+      res.locals.account_email = payload.account_email
+
       // Set the local variables for first name too...
       res.locals.account_firstname = payload.account_firstname
 
-        console.log(payload.account_type)
-        console.log(res.locals.account_type)
-        console.log(payload.account_type == res.locals.account_type)
-        next()
+      next()
       
   } else {
       req.flash("notice", "You need to log in first.");

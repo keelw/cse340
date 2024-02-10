@@ -12,6 +12,31 @@ async function registerAccount(account_firstname, account_lastname, account_emai
     }
   }
 
+/* *****************************
+*   Update existing account info
+* *************************** */
+async function updateAccount(account_firstname, account_lastname, account_email, account_id){
+  try {
+    const sql = "UPDATE public.account SET account_firstname = $1, account_lastname = $2, account_email = $3 WHERE account_id = $4 RETURNING *;"
+    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_id])
+  } catch (error) {
+    return error.message
+  }
+}
+
+/* *****************************
+*   Update existing account password
+* *************************** */
+async function updatePassword(hashedPassword, account_id){
+  try {
+    const sql = "UPDATE public.account SET account_password = $1 WHERE account_id = $2 RETURNING *;"
+    return await pool.query(sql, [hashedPassword, account_id])
+  } catch (error) {
+    return error.message
+  }
+}
+
+
 /* **********************
  *   Check for existing email
  * ********************* */
@@ -40,4 +65,4 @@ async function getAccountByEmail (account_email) {
 }
 
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail }
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword }
