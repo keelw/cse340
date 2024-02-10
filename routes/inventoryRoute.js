@@ -6,10 +6,14 @@ const regValidate = require("../utilities/inventory-validation")
 const utilities = require("../utilities")
 
 // Route to build inventory by classification view
-router.get("/type/:classificationId", invController.buildByClassificationId);
+router.get("/type/:classificationId", 
+    utilities.checkType,
+    invController.buildByClassificationId);
 
 // Route to build inventory by details view
-router.get("/details/:invId", invController.buildByInventoryId);
+router.get("/details/:invId", 
+    utilities.checkType,
+    invController.buildByInventoryId);
 
 // Route to build the manager view
 router.get(
@@ -52,7 +56,9 @@ router.post(
 )
 
 // Route to get the URL for the manager view
-router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
+router.get("/getInventory/:classification_id", 
+    utilities.checkType,
+    utilities.handleErrors(invController.getInventoryJSON))
 
 // Route to build the modify inventory from 
 router.get(
