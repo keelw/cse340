@@ -177,9 +177,12 @@ Util.checkType = (req, res, next) => {
 
       next()
       
+  } else if (!res.locals.loggedin) {
+      next()
+
   } else {
-      req.flash("notice", "You need to log in first.");
-      return res.redirect("/account/login");
+      req.flash("notice", "Site error. Try again later.");
+      return res.redirect("/");
   }
 };
 
