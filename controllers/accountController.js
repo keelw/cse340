@@ -9,9 +9,11 @@ require("dotenv").config()
 * *************************************** */
 async function buildLogin(req, res, next) {
     let nav = await utilities.getNav()
+    // let headerLink = await utilities.doHeader(req, res)
     res.render("account/login", {
       title: "Login",
       nav,
+      // headerLink,
       errors: null,
     })
   }
@@ -21,9 +23,11 @@ async function buildLogin(req, res, next) {
 * *************************************** */
 async function buildRegister(req, res, next) {
   let nav = await utilities.getNav()
+  // let headerLink = await utilities.doHeader(req, res)
   res.render("account/register", {
     title: "Register",
     nav,
+    // headerLink,
     errors: null,
   })
 }
@@ -33,9 +37,15 @@ async function buildRegister(req, res, next) {
 * *************************************** */
 async function buildAccountManager(req, res, next) {
   let nav = await utilities.getNav()
+  const first_name = "hallow"
+  const account_type = "tester"
+  // let headerLink = await utilities.doHeader(req, res)
   res.render("account/accountManager", {
     title: "Account Manager",
+    // headerLink,
     nav,
+    first_name,
+    account_type,
     errors: null,
   })
 }
@@ -45,6 +55,7 @@ async function buildAccountManager(req, res, next) {
 * *************************************** */
 async function registerAccount(req, res) {
   let nav = await utilities.getNav()
+  // let headerLink = await utilities.doHeader(req, res)
   const { account_firstname, account_lastname, account_email, account_password } = req.body
 
   // Hash the password before storing
@@ -56,6 +67,7 @@ async function registerAccount(req, res) {
     req.flash("notice", 'Sorry, there was an error processing the registration.')
     res.status(500).render("account/register", {
       title: "Registration",
+      // headerLink,
       nav,
       errors: null,
     })
@@ -75,12 +87,14 @@ async function registerAccount(req, res) {
     )
     res.status(201).render("account/login", {
       title: "Login",
+      // headerLink,
       nav,
     })
   } else {
     req.flash("notice", "Sorry, the registration failed.")
     res.status(501).render("account/register", {
       title: "Registration",
+      // headerLink,
       nav,
       errors: null,
     })
@@ -92,6 +106,7 @@ async function registerAccount(req, res) {
  * ************************************ */
 async function accountLogin(req, res) {
   let nav = await utilities.getNav()
+  // let headerLink = await utilities.doHeader(req, res)
   const { account_email, account_password } = req.body
   const accountData = await accountModel.getAccountByEmail(account_email)
   if (!accountData) {
@@ -109,6 +124,8 @@ async function accountLogin(req, res) {
    delete accountData.account_password
    const accessToken = jwt.sign(accountData, process.env.ACCESS_TOKEN_SECRET, { expiresIn: 3600 * 1000 })
    res.cookie("jwt", accessToken, { httpOnly: true, maxAge: 3600 * 1000 })
+  //  res.cookie("account_firstname", accountData.account_firstname)
+  //  res.cookie("account_type", accountData.account_type)
    return res.redirect("/account/accountManager")
    }
   } catch (error) {

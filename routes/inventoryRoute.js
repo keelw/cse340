@@ -12,10 +12,20 @@ router.get("/type/:classificationId", invController.buildByClassificationId);
 router.get("/details/:invId", invController.buildByInventoryId);
 
 // Route to build the manager view
-router.get("/", invController.buildManagementView);
+router.get(
+        "/", 
+        utilities.checkLogin,
+        utilities.checkJWTToken,
+        utilities.checkType,
+        invController.buildManagementView);
 
 // Route to build the new classification view
-router.get("/add-classification", invController.buildAddClassificationView)
+router.get(
+    "/add-classification", 
+    utilities.checkLogin,
+    utilities.checkJWTToken,
+    utilities.checkType,
+    invController.buildAddClassificationView)
 
 // Route to add new classification from form and validate
 router.post(
@@ -26,7 +36,12 @@ router.post(
   )
 
 // Route to build the new inventory view
-router.get("/add-inventory", invController.buildAddInventoryView)
+router.get(
+    "/add-inventory", 
+    utilities.checkLogin,
+    utilities.checkJWTToken,
+    utilities.checkType,
+    invController.buildAddInventoryView)
 
 // Route to add new inventory from form and validate
 router.post(
@@ -40,7 +55,12 @@ router.post(
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
 // Route to build the modify inventory from 
-router.get("/edit/:inv_id", utilities.handleErrors(invController.modifyInventory))
+router.get(
+    "/edit/:inv_id", 
+    utilities.checkLogin,
+    utilities.checkJWTToken,
+    utilities.checkType,
+    utilities.handleErrors(invController.modifyInventory))
 
 // Route to actually modify the inventory items
 router.post(
@@ -51,7 +71,12 @@ router.post(
 )
 
 // Route to display the delete inventory view
-router.get("/delete/:inv_id", utilities.handleErrors(invController.deleteInventoryView))
+router.get(
+    "/delete/:inv_id", 
+    utilities.checkLogin,
+    utilities.checkJWTToken,
+    utilities.checkType,
+    utilities.handleErrors(invController.deleteInventoryView))
 
 // Route to delete the inventory items
 router.post(

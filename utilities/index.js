@@ -4,6 +4,7 @@ require("dotenv").config()
 
 const Util = {}
 
+
 /* ************************
  * Constructs the nav HTML unordered list
  ************************** */
@@ -148,5 +149,24 @@ Util.checkLogin = (req, res, next) => {
   }
  }
 
+/* ****************************************
+ *  Check account type
+ * ************************************ */
+Util.checkType = (req, res, next) => {
+  if (res.locals.loggedin) {
+      const token = req.cookies.jwt;
+      const decodedToken = jwt.decode(token);
+      const payload = decodedToken;
+      if (payload.account_type == "Client") {
+          req.flash("notice", "Forbidden from page.");
+          return res.redirect("/account/accountManager");
+      } else {
+        next()
+      }
+  } else {
+      req.flash("notice", "You need to log in first.");
+      return res.redirect("/account/login");
+  }
+};
 
 module.exports = Util
