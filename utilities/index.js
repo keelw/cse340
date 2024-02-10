@@ -157,9 +157,22 @@ Util.checkType = (req, res, next) => {
       const token = req.cookies.jwt;
       const decodedToken = jwt.decode(token);
       const payload = decodedToken;
+
+      // First set the local variables while we are here...
+      if (payload.accout_type == "Client") {
+        res.locals.account_type = "Client";
+      } else if (payload.account_type == "Employee") {
+        res.locals.account_type = "Employee"
+      } else {
+        res.locals.account_type = "Admin"
+      }
+
+      // Set the local variables for first name too...
+      res.locals.account_firstname = payload.account_firstname
+
       if (payload.account_type == "Client") {
           req.flash("notice", "Forbidden from page.");
-          return res.redirect("/account/accountManager");
+          return res.render("/account/accountManager");
       } else {
         next()
       }

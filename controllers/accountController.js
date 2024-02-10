@@ -38,14 +38,9 @@ async function buildRegister(req, res, next) {
 async function buildAccountManager(req, res, next) {
   let nav = await utilities.getNav()
   const first_name = "hallow"
-  const account_type = "tester"
-  // let headerLink = await utilities.doHeader(req, res)
   res.render("account/accountManager", {
     title: "Account Manager",
-    // headerLink,
     nav,
-    first_name,
-    account_type,
     errors: null,
   })
 }
