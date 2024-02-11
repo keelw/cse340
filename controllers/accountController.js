@@ -117,10 +117,10 @@ async function updateAccount(req, res) {
   if (regResult) {
     req.flash(
       "notice",
-      `Congratulations ${account_firstname}. You've updated your account. Please log in.`
+      `Congratulations ${account_firstname}. You've updated your account.`
     )
-    res.status(201).render("account/login", {
-      title: "Login",
+    res.status(201).render("account/accountManager", {
+      title: "Account Manager",
       nav,
     })
   } else {
