@@ -203,6 +203,9 @@ nav li a:hover {
   width: 105px;
   border-radius: 15px;
   padding: 10px;
+  margin: 10px;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
 }
 
 /*********** Vehicle Pages ***********/
@@ -285,6 +288,18 @@ nav li a:hover {
 #add-inventory-form button, #update-form button{
   color: white;
   background-color: navy;
+}
+
+/***** Delete Account Button *********/
+#delete {
+  padding: 10px;
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+}
+
+#delete:hover {
+  text-decoration: underline;
 }
 
 /************* Footer CSS ************/

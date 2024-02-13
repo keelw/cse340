@@ -66,5 +66,20 @@ router.get(
   utilities.handleErrors(accountController.logout)
 )
 
+// Router to deliver the "delete account" view
+router.get(
+  "/delete-account",
+  utilities.checkType,
+  utilities.handleErrors(accountController.deleteAccountView)
+)
+
+// Router to process the account deletion confirmation
+router.post(
+  "/delete-account",
+  regValidate.registationUpdateRules(),
+  regValidate.checkRegData,
+  utilities.handleErrors(accountController.deleteAccount)
+)
+
 // Exports
 module.exports = router;

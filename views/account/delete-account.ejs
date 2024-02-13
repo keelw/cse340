@@ -1,0 +1,33 @@
+<% if (title) { %>
+    <h1><%= title %></h1>
+    <% } else {
+      res.redirect('/')
+    } %>
+
+<%- messages() %>
+
+<% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<div id="add-inventory">
+  <form action="delete-account" method="post" id="add-inventory-form">
+    <p class="note">Confirm Account Deletion - The delete is permanent. Are you sure you want to delete you account?</p>
+    
+    <label for="account_email">Account Email:</label><br>
+    <input readonly type="text" id="account_email" name="account_email" required value="<%= locals.account_email %>"><br>
+    <label for="account_firstname">First Name:</label><br>
+    <input readonly type="text" id="account_firstname" name="account_firstname" required value="<%= locals.account_firstname %>"><br>
+    <label for="account_lastname">Last Name:</label><br>
+    <input readonly type="text" id="account_lastname" name="account_lastname" required value="<%= locals.account_lastname %>"><br>
+    <input type="hidden" name="account_lastname"
+    <% if(locals.account_id) { %> value="<%= locals.account_id %>"
+    <% } %>>
+    <p class="note">Confirm Deletion - The delete is permanent.</p>    
+    <button type="submit" id="delete">Delete Account</button>
+  </form>
+</div>

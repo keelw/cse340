@@ -52,6 +52,19 @@ async function buildAccountUpdate(req, res, next) {
   })
 }
 
+/* ****************************************
+*  Deliver account delete view
+* *************************************** */
+async function deleteAccountView(req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("account/delete-account", {
+    title: "Delete Account",
+    nav,
+    errors: null,
+  })
+}
+
+
 
 /* ****************************************
 *  Process Registration
@@ -184,6 +197,26 @@ async function updatePassword(req, res) {
   }
 }
 
+/* **************************************
+* Delete Account and Handle errors
+* ************************************ */
+async function deleteAccount(req, res) {
+  let nav = await utilities.getNav()
+  const { account_email, account_firstname, account_lastname, account_id } = req.body
+  const deleteAccount = await accountModel.deleteAccount(account_email)
+
+  if (deleteAccount) {
+    req.flash("notice", `Account ${account_email} was successfully deleted.`)
+    res.redirect("/account/logout")
+    } else {
+    req.flash("notice", "Sorry, the DELETE failed.")
+    res.status(501).render("account/update", {
+    title: "Account Update ",
+    nav,
+    errors: null,
+    })
+  }
+}
 
 /* ****************************************
  *  Process login request
@@ -229,4 +262,4 @@ async function logout(req, res) {
 
  
 // Exports
-  module.exports = { buildLogin, buildRegister, registerAccount, buildAccountManager, accountLogin, buildAccountUpdate, updateAccount, updatePassword, logout }
+  module.exports = { buildLogin, buildRegister, registerAccount, buildAccountManager, accountLogin, buildAccountUpdate, updateAccount, updatePassword, logout, deleteAccountView, deleteAccount }

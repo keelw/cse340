@@ -14,9 +14,6 @@
   <%  }) %>
    </ul>
   <% } %>
-
-<!----------- Inventory Display ------------>
-
   
   <div class="form-container">
     <form action="/account/account-update" method="post" class="register-form">
@@ -44,6 +41,10 @@
       <% if(locals.account_id) { %> value="<%= locals.account_id %>"
       <% } %>>
       <button type="submit">UPDATE</button>
+    </form>
+
+    <form action="/account/delete-account" method="get" class="register-form">
+      <button type="submit" id="delete" value="delete">Delete Account</button>
     </form>
   </div>
   

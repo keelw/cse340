@@ -64,5 +64,17 @@ async function getAccountByEmail (account_email) {
   }
 }
 
+/* *****************************
+*   Delete  account
+* *************************** */
+async function deleteAccount(account_email){
+  try {
+    const sql = "DELETE FROM account WHERE account_email = $1;"
+    return await pool.query(sql, [account_email])
+  } catch (error) {
+    return error.message
+  }
+}
 
-module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword }
+
+module.exports = { registerAccount, checkExistingEmail, getAccountByEmail, updateAccount, updatePassword, deleteAccount }
