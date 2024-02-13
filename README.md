@@ -45,3 +45,18 @@ When you installed Git and cloned the remote repository in week 1, you should ha
 1. Go to http://localhost:5500 in a browser tab. Nothing should be visible as the server has not been setup to repond to that route.
 2. Add "/filename.html" to the end of the URL (replacing filename with the name of the file you moved to the public folder).
 3. You should see that page in the browser.
+
+
+## Final project enhancement explanations
+1. Navigate to "My Account" in the top right corner
+2. Click "Sign-up" as if you have no account
+3. Create an account and make sure to remember the email and password
+4. "Register"
+5. You'll be redirected to the login page 
+6. Log in with the new account you created
+7. You'll be directed to the Account Management page
+8. Select "Update account information"
+9. Scroll to the bottom and select "Delete Account"
+10. This will route you to a new view to confirm your account deletion
+11. Confirm your information and select "Delete Account"
+12. You'll be logged out, redirected to the home page, and your account will be deleted. You will no longer be able to log in with those credentials since they've been deleted from the database. 
